@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090a12">
+<title>MAYA WIRE — Connection Console</title>
+<style>
+:root{color-scheme:dark;--bg:#090a12;--panel:#121522;--line:#292d40;--muted:#9aa2b7;--text:#f4f5fb;--accent:#a78bfa;--cyan:#67e8f9;--bad:#fb7185;--good:#86efac}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#252044 0,transparent 42%),radial-gradient(ellipse at 100% 20%,#102b38 0,transparent 35%),var(--bg);color:var(--text);font:15px system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+.wrap{max-width:960px;margin:auto;padding:28px 16px 60px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:34px}.brand{font-weight:900;letter-spacing:.2em;font-size:19px}.brand span{color:var(--accent)}.tag{border:1px solid #554b7a;color:#d8ccff;border-radius:999px;padding:6px 10px;font-size:11px;letter-spacing:.12em}
+.hero{text-align:center;margin:35px auto 28px}.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:.25em;font-weight:800}.hero h1{font-size:clamp(34px,8vw,58px);line-height:1.05;margin:12px 0;background:linear-gradient(90deg,#fff,#c4b5fd,#67e8f9);background-clip:text;color:transparent}.hero p{color:var(--muted);margin:0}
+.panel{background:linear-gradient(145deg,rgba(22,25,41,.96),rgba(13,16,27,.96));border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 18px 60px #0006}
+.login{max-width:520px;margin:0 auto}.label{display:block;color:#cbd1e1;font-size:13px;margin:0 0 8px}.input{width:100%;padding:15px 14px;border-radius:12px;border:1px solid #343a51;background:#090d18;color:white;font:inherit;outline:none}.input:focus{border-color:var(--accent);box-shadow:0 0 0 3px #a78bfa22}.btn{border:0;border-radius:12px;padding:13px 16px;background:linear-gradient(100deg,#8b5cf6,#5eead4);color:#071018;font-weight:900;font-size:14px;cursor:pointer}.btn.secondary{background:#22283a;color:#e5e7eb;border:1px solid #394158}.btn.danger{background:#3b1e2a;color:#fecdd3;border:1px solid #713044}.btn:active{transform:scale(.99)}.full{width:100%;margin-top:12px}.hint,.small{font-size:12px;color:var(--muted);line-height:1.6}.notice{border:1px solid #594a25;background:#292313;color:#f8df9a;border-radius:12px;padding:12px;font-size:12px;line-height:1.6;margin-top:16px}.status{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px;margin-top:18px}.dot{width:8px;height:8px;background:#fbbf24;border-radius:50%;box-shadow:0 0 12px #fbbf2488}
+.hidden{display:none!important}.dash{margin-top:22px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.stat{padding:15px;border:1px solid var(--line);border-radius:14px;background:#0d1120}.stat b{display:block;font-size:23px;margin-top:6px}.muted{color:var(--muted)}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{justify-content:space-between}.url{overflow-wrap:anywhere;background:#080c16;border:1px solid var(--line);padding:13px;border-radius:10px;color:#a5f3fc;font-size:12px;margin:10px 0}.section-title{font-size:17px;margin:0 0 14px}.keylist{display:grid;gap:9px;margin-top:14px}.keyitem{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;border:1px solid var(--line);border-radius:12px;background:#0c1020}.keyitem code{overflow-wrap:anywhere;color:#ddd6fe}.admin{margin-top:20px}.footer{text-align:center;color:#70798f;font-size:11px;margin-top:28px;letter-spacing:.06em}
+@media(max-width:620px){.grid{grid-template-columns:1fr}.panel{padding:17px}.top{margin-bottom:24px}.keyitem{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top"><div class="brand">MAYA <span>WIRE</span></div><div class="tag">CONNECTION CONSOLE · DEMO</div></header>
+  <section class="hero"><div class="eyebrow">PRIVATE ACCESS GATEWAY</div><h1>WELCOME TO MAYA</h1><p>One key. One access. Your connection space.</p></section>
+
+  <main>
+    <section class="panel login" id="loginPanel">
+      <div class="eyebrow" style="margin-bottom:12px">MEMBER ACCESS</div>
+      <label class="label" for="accessKey">ACCESS KEY</label>
+      <input class="input" id="accessKey" placeholder="กรอกคีย์ของคุณ เช่น MAYA-DEMO" autocomplete="off" autocapitalize="characters">
+      <button class="btn full" id="loginBtn">CONTINUE ↗</button>
+      <p class="hint" style="margin:12px 0 0">ทดลองระบบด้วยคีย์ <b>MAYA-DEMO</b> หรือสร้างคีย์ใหม่ในโหมดผู้ดูแลด้านล่าง</p>
+      <div class="notice">DEMO ONLY — ระบบนี้เป็นตัวอย่างหน้าร้านและการตรวจสอบคีย์ในเบราว์เซอร์ ยังไม่ได้เชื่อมต่อ VPN Server หรือ HAPP จริง</div>
+      <div class="status"><span class="dot"></span> VPN SERVER: NOT CONNECTED (DEMO)</div>
+    </section>
+
+    <section class="panel dash hidden" id="memberPanel">
+      <div class="row between"><div><div class="eyebrow">ACCESS GRANTED</div><h2 style="margin:7px 0 0">Connection Console</h2></div><button class="btn secondary" id="logoutBtn">ออกจากระบบ</button></div>
+      <div class="grid">
+        <div class="stat"><span class="small">KEY STATUS</span><b style="color:var(--good)">ACTIVE</b></div>
+        <div class="stat"><span class="small">ACCESS KEY</span><b id="memberKey" style="font-size:14px;overflow-wrap:anywhere">—</b></div>
+        <div class="stat"><span class="small">EXPIRES</span><b id="memberExpiry" style="font-size:16px">—</b></div>
+      </div>
+      <h3 class="section-title">HAPP SUBSCRIPTION</h3>
+      <p class="small">ตัวอย่างตำแหน่ง URL สำหรับนำเข้าใน HAPP — ยังใช้เชื่อมต่อจริงไม่ได้จนกว่าจะตั้งค่า VPN Server และ API</p>
+      <div class="url" id="subUrl">ยังไม่มี Subscription URL จริง</div>
+      <button class="btn secondary" id="copyUrl">คัดลอก URL ตัวอย่าง</button>
+      <div class="notice">อย่านำ URL ตัวอย่างนี้ไปใช้เป็นเซิร์ฟเวอร์จริง และอย่าใส่รหัสลับหรือข้อมูลเซิร์ฟเวอร์ลงใน GitHub ที่เป็นสาธารณะ</div>
+    </section>
+
+    <section class="panel admin" id="adminPanel">
+      <div class="row between"><div><div class="eyebrow">OWNER AREA</div><h2 style="margin:6px 0">MAYA KEY MANAGER</h2></div><span class="tag">LOCAL DEMO</span></div>
+      <p class="small">สร้างคีย์เพื่อทดสอบหน้าระบบ ข้อมูลจะเก็บอยู่ในเบราว์เซอร์เครื่องนี้เท่านั้น</p>
+      <div class="row">
+        <div style="flex:1;min-width:150px"><label class="label" for="days">อายุคีย์ (วัน)</label><input class="input" id="days" type="number" min="1" max="365" value="30"></div>
+        <div style="align-self:end"><button class="btn" id="createKey">＋ สร้างคีย์</button></div>
+      </div>
+      <div class="keylist" id="keyList"></div>
+      <p class="hint">หมายเหตุ: โหมดผู้ดูแลนี้ไม่มีระบบล็อกอินจริง ห้ามใช้จัดการคีย์ลูกค้าจริง</p>
+    </section>
+  </main>
+  <div class="footer">MAYA WIRE © 2026 · DEMO BUILD · NOT A LIVE VPN SERVICE</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const STORE='maya_wire_demo_keys_v1';
+function load(){try{return JSON.parse(localStorage.getItem(STORE)||'[]')}catch{return []}}
+function save(a){localStorage.setItem(STORE,JSON.stringify(a))}
+function datePlus(n){const d=new Date();d.setDate(d.getDate()+n);return d.toISOString()}
+function fmt(v){return new Date(v).toLocaleDateString('th-TH',{year:'numeric',month:'short',day:'numeric'})}
+function allKeys(){return [{key:'MAYA-DEMO',expires:datePlus(30),active:true},...load()]}
+function render(){const list=$('keyList');list.innerHTML='';const arr=load();if(!arr.length){list.innerHTML='<p class="small">ยังไม่มีคีย์ที่สร้างเพิ่ม</p>';return}arr.forEach((x,i)=>{const el=document.createElement('div');el.className='keyitem';const left=document.createElement('div');const code=document.createElement('code');code.textContent=x.key;const meta=document.createElement('div');meta.className='small';meta.textContent='หมดอายุ '+fmt(x.expires);left.append(code,meta);const del=document.createElement('button');del.className='btn danger';del.textContent='ลบ';del.onclick=()=>{const a=load();a.splice(i,1);save(a);render()};el.append(left,del);list.append(el)})}
+function login(){const k=$('accessKey').value.trim().toUpperCase();const item=allKeys().find(x=>x.key===k&&x.active!==false&&new Date(x.expires)>new Date());if(!item){alert('คีย์ไม่ถูกต้อง หมดอายุ หรือถูกระงับ');return}$('loginPanel').classList.add('hidden');$('memberPanel').classList.remove('hidden');$('memberKey').textContent=item.key;$('memberExpiry').textContent=fmt(item.expires);$('subUrl').textContent='https://demo.invalid/maya/subscription/'+encodeURIComponent(item.key)}
+$('loginBtn').onclick=login;$('accessKey').addEventListener('keydown',e=>{if(e.key==='Enter')login()});
+$('logoutBtn').onclick=()=>{$('memberPanel').classList.add('hidden');$('loginPanel').classList.remove('hidden');$('accessKey').value=''};
+$('createKey').onclick=()=>{const days=Math.max(1,Math.min(365,Number($('days').value)||30));const key='MAYA-'+Array.from(crypto.getRandomValues(new Uint8Array(6))).map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase();const a=load();a.push({key,expires:datePlus(days),active:true});save(a);render();alert('สร้างคีย์แล้ว: '+key)};
+$('copyUrl').onclick=async()=>{try{await navigator.clipboard.writeText($('subUrl').textContent);alert('คัดลอกแล้ว')}catch{alert('เบราว์เซอร์ไม่อนุญาตให้คัดลอก กรุณาคัดลอก URL ด้วยตนเอง')}};
+render();
+</script>
+</body>
+</html>
