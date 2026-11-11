@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0d14">
+<title>MAYA — Connection Console</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0d14;--panel:#121622;--panel2:#191f2e;--line:#293247;--muted:#929bb0;--text:#f4f6fb;--accent:#9b7bff;--accent2:#5ed6c2;--red:#ff7285}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#28204b 0,transparent 48%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+.wrap{width:min(1080px,calc(100% - 32px));margin:auto;padding:28px 0 48px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.16em}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#a98cff,#5c4bb5);display:grid;place-items:center;color:white;font-size:21px;box-shadow:0 8px 30px #8b6cff40}.tag{color:var(--muted);font-size:11px;letter-spacing:.16em}.theme{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:10px;padding:9px 13px;cursor:pointer}
+main{max-width:470px;margin:0 auto}.card{background:linear-gradient(180deg,#171c2a,#111521);border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:0 24px 80px #0007}.center{text-align:center}.eyebrow{color:var(--accent2);font-size:11px;font-weight:700;letter-spacing:.18em}.title{font-size:28px;line-height:1.2;margin:9px 0}.sub{color:var(--muted);margin:0 0 26px}.field-label{display:block;font-size:13px;margin:18px 0 8px;color:#d9deeb}.field{width:100%;background:#0c101a;border:1px solid #30394e;color:var(--text);border-radius:12px;padding:14px 15px;font:inherit;outline:none}.field:focus{border-color:var(--accent);box-shadow:0 0 0 3px #9b7bff20}.btn{width:100%;border:0;border-radius:12px;padding:14px;margin-top:18px;background:linear-gradient(100deg,#9b7bff,#7259d8);color:white;font-weight:800;font:inherit;cursor:pointer}.btn:hover{filter:brightness(1.1)}.hint,.foot{font-size:12px;color:var(--muted)}.hint{margin-top:12px}.foot{text-align:center;margin-top:22px}.notice{display:none;margin-top:14px;padding:11px 13px;border-radius:10px;background:#30202b;color:#ffb4bf;font-size:13px}.demo{margin-top:20px;border:1px dashed #3d4560;border-radius:12px;padding:12px;color:var(--muted);font-size:12px}.demo b{color:#d8ceff}
+.dashboard{max-width:900px;margin:0 auto;display:none}.dash-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}.dash-title{font-size:25px;margin:0}.muted{color:var(--muted)}.logout{background:transparent;border:1px solid var(--line);color:var(--text);padding:10px 14px;border-radius:10px;cursor:pointer}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.stat,.section{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:19px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:24px;margin-top:8px}.section{margin-top:15px}.section h3{margin:0 0 15px;font-size:16px}.status{display:inline-flex;align-items:center;gap:7px;color:#75e0bf;background:#17332f;border-radius:99px;padding:5px 10px;font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:#75e0bf}.rows{display:grid;grid-template-columns:1fr 1fr;gap:14px}.rowline{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid #252d40}.rowline:last-child{border:0}.value{font-weight:600;text-align:right;overflow-wrap:anywhere}.warning{color:#eabf78;font-size:12px;margin-top:14px}
+.light{--bg:#f1f3fa;--panel:#fff;--panel2:#f5f6fb;--line:#dce1ed;--muted:#687188;--text:#171b29;background:radial-gradient(ellipse at 50% -20%,#ded6ff 0,transparent 48%),var(--bg)}.light .card{background:linear-gradient(180deg,#fff,#f7f8fc)}.light .field{background:#f8f9fd;color:#171b29}.light .stat,.light .section{background:#fff}
+@media(max-width:650px){.wrap{width:min(100% - 22px,1080px);padding-top:18px}.top{margin-bottom:28px}.card{padding:23px 19px}.stats{grid-template-columns:1fr}.rows{grid-template-columns:1fr}.dash-head{align-items:flex-start}.dash-title{font-size:22px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand"><div class="logo">M</div><div>MAYA<div class="tag">CONNECTION CONSOLE</div></div></div>
+  <button class="theme" id="themeBtn" type="button">สลับธีม</button>
+</header>
+<main>
+<section class="card center" id="login">
+  <div class="eyebrow">WELCOME BACK</div>
+  <h1 class="title">เข้าสู่ระบบ MAYA</h1>
+  <p class="sub">กรอก Access Key เพื่อเข้าสู่หน้าจัดการของคุณ</p>
+  <form id="loginForm">
+    <label class="field-label" for="key">Access Key</label>
+    <input class="field" id="key" autocomplete="off" placeholder="กรอก Access Key ของคุณ" required>
+    <button class="btn" type="submit">เข้าสู่ระบบ</button>
+    <div class="notice" id="notice">คีย์ไม่ถูกต้อง กรุณาลองใหม่</div>
+  </form>
+  <p class="hint">การเข้าสู่ระบบครั้งแรกในเวอร์ชันจริง สามารถผูกคีย์กับอุปกรณ์ได้ผ่านเซิร์ฟเวอร์</p>
+  <div class="demo">โหมดตัวอย่าง: ใช้คีย์ <b>MAYA-DEMO</b> เพื่อทดลองหน้า Dashboard</div>
+</section>
+</main>
+<section class="dashboard" id="dashboard">
+  <div class="dash-head"><div><div class="eyebrow">MAYA / OVERVIEW</div><h1 class="dash-title">Dashboard</h1><div class="muted">ยินดีต้อนรับเข้าสู่ระบบจัดการคีย์</div></div><button class="logout" id="logout">ออกจากระบบ</button></div>
+  <div class="stats">
+    <div class="stat"><small>สถานะคีย์</small><strong><span class="status"><i class="dot"></i> ACTIVE</span></strong></div>
+    <div class="stat"><small>แพ็กเกจ</small><strong>DEMO</strong></div>
+    <div class="stat"><small>วันหมดอายุ</small><strong>ไม่จำกัด*</strong></div>
+  </div>
+  <div class="rows">
+    <div class="section"><h3>ข้อมูล Access Key</h3><div class="rowline"><span class="muted">คีย์</span><span class="value">MAYA-DEMO</span></div><div class="rowline"><span class="muted">สถานะ</span><span class="value">ใช้งานได้ (ตัวอย่าง)</span></div><div class="rowline"><span class="muted">ประเภทบัญชี</span><span class="value">Demo User</span></div></div>
+    <div class="section"><h3>ข้อมูลอุปกรณ์</h3><div class="rowline"><span class="muted">แพลตฟอร์ม</span><span class="value" id="platform">ตรวจพบจากเบราว์เซอร์</span></div><div class="rowline"><span class="muted">เบราว์เซอร์</span><span class="value">Web</span></div><div class="rowline"><span class="muted">การเชื่อมต่อ</span><span class="value">ตัวอย่างเท่านั้น</span></div></div>
+  </div>
+  <div class="section"><h3>สถานะระบบ</h3><p class="muted">หน้า Dashboard ตัวอย่างทำงานบนอุปกรณ์ทุกขนาดหน้าจอ ทั้ง iPhone, Android, แท็บเล็ต และคอมพิวเตอร์</p><div class="warning">* ข้อมูลทั้งหมดเป็นข้อมูลจำลอง การตรวจสอบคีย์จริง การผูกอุปกรณ์ และวันหมดอายุ ต้องเชื่อมต่อ Backend/API และฐานข้อมูลก่อนเปิดใช้งานจริง</div></div>
+</section>
+<p class="foot">© 2026 MAYA · CONNECTION CONSOLE</p>
+</div>
+<script>
+const login=document.getElementById('login'),dash=document.getElementById('dashboard'),notice=document.getElementById('notice');
+document.getElementById('loginForm').addEventListener('submit',e=>{e.preventDefault();if(document.getElementById('key').value.trim()==='MAYA-DEMO'){login.style.display='none';dash.style.display='block';document.querySelector('main').style.display='none';document.getElementById('platform').textContent=/iPhone|iPad|iPod/i.test(navigator.userAgent)?'iOS':/Android/i.test(navigator.userAgent)?'Android':'Desktop / Other';notice.style.display='none'}else{notice.style.display='block'}});
+document.getElementById('logout').addEventListener('click',()=>{dash.style.display='none';document.querySelector('main').style.display='block';login.style.display='block';document.getElementById('key').value=''});
+document.getElementById('themeBtn').addEventListener('click',()=>document.body.classList.toggle('light'));
+</script>
+</body></html>
